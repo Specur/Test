@@ -1,9 +1,0 @@
-package gramy;
-
-import javax.swing.JComponent;
-
-public class PrzyciskiPrzeglad extends JComponent{
-		public PrzyciskiPrzeglad(){
-			
-		}
-}
