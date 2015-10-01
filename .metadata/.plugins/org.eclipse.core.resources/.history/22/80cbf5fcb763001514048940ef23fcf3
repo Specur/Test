@@ -1,0 +1,52 @@
+package gramy;
+
+
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+import java.text.*;
+
+ 
+
+
+
+class Zegar extends JLabel implements Runnable {
+
+	private Thread watek;
+	private int pauza = 1000;
+
+public Zegar() {
+
+	
+
+	setFont (new Font ("Consolas", Font.BOLD, 28));
+	setBackground(Color.BLUE);
+	setForeground(Color.WHITE);
+	setBounds(50,50,400,60);
+	setOpaque(true);
+}
+public void start() {
+
+		if (watek == null) {
+
+				watek = new Thread(this);
+				watek.start();
+		}
+}
+public void run() {
+
+while ( watek == Thread.currentThread()) {
+
+Date time = new Date();
+DateFormat df = DateFormat.getTimeInstance(DateFormat.SHORT);
+setText(df.format(time));
+		try {
+			watek.sleep(pauza);
+		} catch (InterruptedException e) {}
+	}
+}
+	public void stop() {
+
+		watek = null;
+}
+}

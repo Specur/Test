@@ -1,0 +1,57 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.LinkedList;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class Obrazki extends JPanel{
+	
+	Image img,img1,imgCristal,imgMetal,imgDeuterium,metal,cristal,deuterium;
+	public Obrazki(){
+		
+
+		
+		img1 =loadImage("background.jpg");
+		imgCristal = loadImage("krysztal.jpg");
+		imgMetal = loadImage("metal.jpg");
+		imgDeuterium = loadImage("deuterr.jpg");
+		metal = loadImage("metall.gif");
+		cristal = loadImage("kristall.gif");
+		deuterium = loadImage("deuterium.gif");
+		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
+		setVisible(true);
+	}
+	public void paintComponent(Graphics g){
+		g.drawImage(img1, 1, 1, this);
+		
+	
+		g.drawImage(imgCristal, 300, 270,this);
+		g.drawImage(imgMetal, 300, 150, this);
+		g.drawImage(imgDeuterium, 300, 390, this);
+		g.drawImage(metal, 350, 40, this);
+		g.drawImage(cristal, 550, 40,this);
+		g.drawImage(deuterium, 750, 40, this);
+		g.setColor(Color.WHITE);
+		
+	}
+	
+	public BufferedImage loadImage(String sciezka) {
+		URL url=null;
+		try {
+		url = getClass().getClassLoader().getResource(sciezka);
+		return ImageIO.read(url);
+		} catch (Exception e) {
+		System.out.println("error 0001"+ sciezka);
+		System.exit(0);
+		return null;
+		}
+		}
+
+}

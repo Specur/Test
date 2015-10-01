@@ -1,0 +1,18 @@
+package gramy;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public class Surowce extends JPanel{
+	public Surowce(){
+		JComponent roz = new Przyciski();
+		add(roz);
+		JComponent dwo = new Opisy();
+		add(dwo);
+		JPanel tri = new Obrazki();
+		add(tri);
+		setVisible(true);
+		
+	}
+
+}

@@ -1,0 +1,153 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class ObronaOpisy extends JComponent {
+	public static JLabel metal , krysztal , deuter ,laserowe,jonowe,gaussa,podmet,podkry,poddeu;
+	JTextArea textLaserowe,textJonowe,textGaussa,budujlaser,budujjon,budujgaussa ;
+	JButton budlaser,budjon,budgaussa;
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+			
+				if(source == budlaser){
+					Stage.DZIALO_LASEROWE+= Integer.parseInt(budujlaser.getText());
+					laserowe.setText("Dzia³o laserowe " + Stage.DZIALO_LASEROWE+" sztuk");
+				}
+				if(source == budjon){
+					Stage.DZIALO_JONOWE+=1;
+					jonowe.setText("Dzia³o jonowe " + Stage.DZIALO_JONOWE+" sztuk");
+				}
+				if(source == budgaussa){
+					Stage.DZIALO_GAUSSA+=1;
+					gaussa.setText("Kopalnia Deuteru " + Stage.DZIALO_GAUSSA +" sztuk");
+				}
+				
+			
+			}
+		};
+	
+	
+	
+	
+	public ObronaOpisy(){
+		
+		budujlaser = new JTextArea("0");
+		budujlaser.setBounds(710, 150, 80, 20);
+		budujlaser.setBackground(Color.WHITE);
+		add(budujlaser);
+		
+		
+		
+		metal = new JLabel(""+Stage.METAL);
+		metal.setForeground(Color.WHITE);
+		metal.setBounds(400, 40, 200, 20);
+		add(metal);
+		
+		krysztal = new JLabel(""+Stage.KRYSZTAL);
+		krysztal.setForeground(Color.WHITE);
+		krysztal.setBounds(605, 40, 200, 20);
+		add(krysztal);
+		
+		deuter = new JLabel(""+Stage.DEUTER);
+		deuter.setForeground(Color.WHITE);
+		deuter.setBounds(805, 40, 200, 20);
+		add(deuter);
+		
+		laserowe = new JLabel("Dzia³o laserowe " + Stage.DZIALO_LASEROWE +" sztuk");
+		jonowe = new JLabel("Dzia³o jonowe "+Stage.DZIALO_JONOWE +" sztuk");
+		gaussa = new JLabel("Dzia³o Gaussa "+Stage.DZIALO_GAUSSA +" sztuk");
+		laserowe.setForeground(Color.WHITE);
+		jonowe.setForeground(Color.WHITE);
+		gaussa.setForeground(Color.WHITE);
+		laserowe.setBounds(400,130,150,30);
+		jonowe.setBounds(400,250,150,30);
+		gaussa.setBounds(400,370,150,30);
+		add(laserowe);
+		add(jonowe);
+		add(gaussa);
+		
+		
+		podmet = new JLabel("Metal");
+		podkry = new JLabel("Krysztal");
+		poddeu = new JLabel("Deuter");
+	//podmet.setOpaque(true);
+	//podmet.setBackground(Color.BLUE);
+		podmet.setForeground(Color.WHITE);
+		podkry.setForeground(Color.WHITE);
+		poddeu.setForeground(Color.WHITE);
+		podmet.setBounds(353,15,150,30);
+		podkry.setBounds(548,15,150,30);
+		poddeu.setBounds(750,15,150,30);
+		add(podmet);
+		add(podkry);
+		add(poddeu);
+		
+		textLaserowe = new JTextArea();
+		Font dialog = new Font("Serif" , Font.ITALIC,13);
+		textLaserowe.setForeground(Color.RED);
+		textLaserowe.setFont(dialog);
+		textLaserowe.setText("Przez skoncentrowany ostrza³ wybranego celu fotonami\nmo¿na wyrz¹dziæ znacznie wiêksze szkody ni¿\nprzy pomocy zwyk³ej broni balistycznej.");
+		textLaserowe.setBackground(Color.GRAY);
+		textLaserowe.setEditable(false);
+		textLaserowe.setOpaque(false);
+		textLaserowe.setBounds(400, 150, 295, 95);
+		add(textLaserowe);
+		//////////////////////////////////////////
+		
+		textJonowe = new JTextArea();
+		textJonowe.setForeground(Color.RED);
+		textJonowe.setFont(dialog);
+		textJonowe.setText("Dzia³o jonowe przyœpiesza jony skierowane na\ncel ataku. Destabilizuj¹ one pow³okê ochronn¹\ni w skutek zmian elektromagnetycznych uszkadzaj¹ elektronikê.");
+		//textkrys.setBackground(Color.GRAY);
+		textJonowe.setEditable(false);
+		textJonowe.setOpaque(false);
+		textJonowe.setBounds(400, 270, 295, 95);
+		add(textJonowe);
+		/////////////////////////////////////////
+		
+		textGaussa = new JTextArea();
+		textGaussa.setForeground(Color.RED);
+		textGaussa.setFont(dialog);
+		textGaussa.setText("Dzia³o Gaussa przyœpiesza kilkutonowe pociski, wykorzystuj¹c\nprzy tym gigantyczn¹ iloœæ energii.");
+		//textdeu.setBackground(Color.GRAY);
+		textGaussa.setEditable(false);
+		textGaussa.setOpaque(false);
+		textGaussa.setBounds(400, 390, 295, 95);
+		add(textGaussa);
+		
+		
+		budlaser = new JButton("Buduj");
+		budlaser.setBounds(700, 180, 100, 20);
+		budlaser.addActionListener(al);
+		add(budlaser);
+		
+
+		budjon = new JButton("Buduj");
+		budjon.setBounds(700,300,100,20);
+		budjon.addActionListener(al);
+		add(budjon);
+		
+		budgaussa = new JButton("Buduj");
+		budgaussa.setBounds(700, 420, 100, 20);
+		budgaussa.addActionListener(al);
+		add(budgaussa);
+		
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+		
+		
+	}
+
+}

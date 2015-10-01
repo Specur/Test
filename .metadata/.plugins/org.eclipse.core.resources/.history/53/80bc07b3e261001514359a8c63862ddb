@@ -1,0 +1,59 @@
+package gramy;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+
+public class Przyciski extends JComponent {
+	private static JButton budkry,budmet,buddeu;
+	
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+				if(source == budmet){
+					Stage.LVL_METAL+=1;
+					Opisy.metallvl.setText("Kopalnia Metalu " + Stage.LVL_METAL+" lvl");
+				}
+				if(source == budkry){
+					Stage.LVL_KRYSZTAL+=1;
+					Opisy.krysztallvl.setText("Kopalnia Kryszta³u " + Stage.LVL_KRYSZTAL+" lvl");
+				}
+				if(source == buddeu){
+					Stage.LVL_DEUTER+=1;
+					Opisy.deuterlvl.setText("Kopalnia Deuteru " + Stage.LVL_DEUTER +" lvl");
+				}
+				Stage.AKTUALNY_LVL +=1 ;
+			}
+		};
+	public Przyciski(){
+		
+		
+		
+		budkry = new JButton("Buduj");
+		budkry.setBounds(700, 300, 100, 20);
+		budkry.addActionListener(al);
+		add(budkry);
+		
+
+		budmet = new JButton("Buduj");
+		budmet.setBounds(700,180,100,20);
+		budmet.addActionListener(al);
+		add(budmet);
+		
+		buddeu = new JButton("Buduj");
+		buddeu.setBounds(700, 420, 100, 20);
+		buddeu.addActionListener(al);
+		add(buddeu);
+		
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

@@ -1,0 +1,118 @@
+package gramy;
+
+import static java.lang.Math.pow;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class Opisy extends JComponent {
+	
+	
+	
+	private JTextArea textmet,textkrys,textdeu;
+	public static JLabel podmet,podkry,poddeu , metallvl,krysztallvl,deuterlvl,metal,krysztal,deuter,metalKoszty,deuterKoszty,krysztalKoszty;
+	
+	public Opisy(){
+		
+		metalKoszty = new JLabel();
+		metalKoszty.setBounds(400,170,400,70);
+		metalKoszty.setForeground(Color.WHITE);
+		metalKoszty.setText("Potrzebne surowce: Metal "+(int)Stage.KOSZTY_METAL_METAL*pow(1.5,Stage.LVL_METAL-1)+" Krysztal "+(int)Stage.KOSZTY_METAL_KRYSZTAL*pow(1.5,Stage.LVL_METAL-1));
+		add(metalKoszty);
+		
+		
+		
+		
+		
+		metal = new JLabel(""+Stage.METAL);
+		metal.setForeground(Color.WHITE);
+		metal.setBounds(400, 40, 200, 20);
+		add(metal);
+		
+		krysztal = new JLabel(""+Stage.KRYSZTAL);
+		krysztal.setForeground(Color.WHITE);
+		krysztal.setBounds(605, 40, 200, 20);
+		add(krysztal);
+		
+		deuter = new JLabel(""+Stage.DEUTER);
+		deuter.setForeground(Color.WHITE);
+		deuter.setBounds(805, 40, 200, 20);
+		add(deuter);
+	
+		
+		metallvl = new JLabel("Kopalnia Metalu " + Stage.LVL_METAL +" lvl");
+		krysztallvl = new JLabel("Kopalnia Kryszta³u "+Stage.LVL_KRYSZTAL +" lvl");
+		deuterlvl = new JLabel("Kopalnia Deuteru "+Stage.LVL_DEUTER +" lvl");
+		metallvl.setForeground(Color.WHITE);
+		krysztallvl.setForeground(Color.WHITE);
+		deuterlvl.setForeground(Color.WHITE);
+		metallvl.setBounds(400,130,150,30);
+		krysztallvl.setBounds(400,250,150,30);
+		deuterlvl.setBounds(400,370,150,30);
+		add(metallvl);
+		add(krysztallvl);
+		add(deuterlvl);
+		/////////////////////////////////////////////////////
+			podmet = new JLabel("Metal");
+			podkry = new JLabel("Krysztal");
+			poddeu = new JLabel("Deuter");
+		//podmet.setOpaque(true);
+		//podmet.setBackground(Color.BLUE);
+			podmet.setForeground(Color.WHITE);
+			podkry.setForeground(Color.WHITE);
+			poddeu.setForeground(Color.WHITE);
+			podmet.setBounds(353,15,150,30);
+			podkry.setBounds(548,15,150,30);
+			poddeu.setBounds(750,15,150,30);
+			add(podmet);
+			add(podkry);
+			add(poddeu);
+		
+		textmet = new JTextArea();
+		Font dialog = new Font("Serif" , Font.ITALIC,13);
+		textmet.setForeground(Color.RED);
+		textmet.setFont(dialog);
+		textmet.setText("Dostawca g³ównego surowca do budowy \nkonstrukcji noœnych budynków i statków kosmicznych.");
+		textmet.setBackground(Color.GRAY);
+		textmet.setEditable(false);
+		textmet.setOpaque(false);
+		textmet.setBounds(400, 150, 295, 95);
+		add(textmet);
+		//////////////////////////////////////////
+		
+		textkrys = new JTextArea();
+		textkrys.setForeground(Color.RED);
+		textkrys.setFont(dialog);
+		textkrys.setText("Dostawca g³ównego surowca do budowy\n elementów elektronicznych i stopów metali.");
+		//textkrys.setBackground(Color.GRAY);
+		textkrys.setEditable(false);
+		textkrys.setOpaque(false);
+		textkrys.setBounds(400, 270, 295, 95);
+		add(textkrys);
+		/////////////////////////////////////////
+		
+		textdeu = new JTextArea();
+		textdeu.setForeground(Color.RED);
+		textdeu.setFont(dialog);
+		textdeu.setText("Oddziela atomy deuteru(ciê¿kiego izotopu wodoru)\n od atomów lekkiego wodoru z wody znajduj¹cej\n siê na planecie.");
+		//textdeu.setBackground(Color.GRAY);
+		textdeu.setEditable(false);
+		textdeu.setOpaque(false);
+		textdeu.setBounds(400, 390, 295, 95);
+		add(textdeu);
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+		
+		
+	}
+
+}

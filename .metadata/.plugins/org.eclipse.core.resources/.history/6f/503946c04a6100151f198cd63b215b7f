@@ -1,0 +1,10 @@
+package gramy;
+
+public class Przeglad {
+	public Przeglad(){
+		
+		
+		
+	}
+
+}

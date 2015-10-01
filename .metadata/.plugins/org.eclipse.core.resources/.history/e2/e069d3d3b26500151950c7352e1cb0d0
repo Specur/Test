@@ -1,0 +1,169 @@
+package gramy;
+
+import static java.lang.Math.pow;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class BadaniaOpisy extends JComponent{
+	public static int KOSZTY_BOJOWA_METAL = 400 ;
+	public static int KOSZTY_BOJOWA_KRYSZTAL = 200 ;
+	public static int KOSZTY_BOJOWA_DEUTER = 500 ;
+	
+	public static int KOSZTY_OCHRONNA_METAL = 500 ;
+	public static int KOSZTY_OCHRONNA_KRYSZTAL = 600 ;
+	public static int KOSZTY_OCHRONNA_DEUTER = 600 ;
+	
+	public static int KOSZTY_WYDOBYWCZA_METAL = 500 ;
+	public static int KOSZTY_WYDOBYWCZA_KRYSZTAL = 500 ;
+	public static int KOSZTY_WYDOBYWCZA_DEUTER = 1000 ;
+	
+	JTextArea opisBojowa,opisOchronna,opisWydobywcza ;
+	public static JLabel  wymagania,wymaganiaBojowa , wymaganiaOchronna, wymaganiaWydobywcza, bojowaKoszty,ochronnaKoszty,wydobywczaKoszty, metal , krysztal , deuter , bojowaLvl , wydobywczaLvl , ochronnaLvl , podmet , podkry , poddeu ;
+	
+	public BadaniaOpisy(){
+		
+		
+		wymagania = new JLabel();
+		wymagania.setBounds(810,140,150,40);
+		wymagania.setForeground(Color.WHITE);
+		wymagania.setText("WYMAGANIA:");
+		add(wymagania);
+		
+		
+		wymaganiaBojowa = new JLabel();
+		wymaganiaBojowa.setBounds(800,170,150,40);
+		wymaganiaBojowa.setForeground(Color.WHITE);
+		wymaganiaBojowa.setText("Labolatorium 10 lvl");
+		add(wymaganiaBojowa);
+		
+		wymaganiaOchronna = new JLabel();
+		wymaganiaOchronna.setBounds(800,290,150,40);
+		wymaganiaOchronna.setForeground(Color.WHITE);
+		wymaganiaOchronna.setText("Labolatorium 15 lvl");
+		add(wymaganiaOchronna);
+		
+		wymaganiaWydobywcza = new JLabel();
+		wymaganiaWydobywcza.setBounds(800,410,150,40);
+		wymaganiaWydobywcza.setForeground(Color.WHITE);
+		wymaganiaWydobywcza.setText("Labolatorium 5 lvl");
+		add(wymaganiaWydobywcza);
+		
+		
+		
+
+		bojowaKoszty = new JLabel();
+		bojowaKoszty.setBounds(400,195,400,70);
+		bojowaKoszty.setForeground(Color.WHITE);
+		bojowaKoszty.setText("Potrzebne surowce: Metal "+(int)(KOSZTY_BOJOWA_METAL*pow(1.5,Stage.LVL_BOJOWA-1))+" Krysztal "+(int)(KOSZTY_BOJOWA_KRYSZTAL*pow(1.5,Stage.LVL_BOJOWA-1))+ " Deuter " +(int)(KOSZTY_BOJOWA_DEUTER*pow(1.5,Stage.LVL_BOJOWA-1)));
+		add(bojowaKoszty);
+		
+		
+		ochronnaKoszty = new JLabel();
+		ochronnaKoszty.setBounds(400,320,400,70);
+		ochronnaKoszty.setForeground(Color.WHITE);
+		ochronnaKoszty.setText("Potrzebne surowce: Metal "+(int)(KOSZTY_OCHRONNA_METAL*pow(1.5,Stage.LVL_OCHRONNA-1))+" Krysztal "+(int)(KOSZTY_OCHRONNA_KRYSZTAL*pow(1.5,Stage.LVL_OCHRONNA-1))+" Deuter "+ (int)(KOSZTY_OCHRONNA_DEUTER*pow(1.5,Stage.LVL_OCHRONNA-1)));
+		add(ochronnaKoszty);
+		
+		wydobywczaKoszty = new JLabel();
+		wydobywczaKoszty.setBounds(400,470,400,70);
+		wydobywczaKoszty.setForeground(Color.WHITE);
+		wydobywczaKoszty.setText("Potrzebne surowce: Metal "+(int)(KOSZTY_WYDOBYWCZA_METAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1))+" Krysztal "+(int)(KOSZTY_WYDOBYWCZA_KRYSZTAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1))+" Deuter "+(int)(KOSZTY_WYDOBYWCZA_DEUTER*pow(1.5,Stage.LVL_WYDOBYWCZA-1)));
+		add(wydobywczaKoszty);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		metal = new JLabel(""+Stage.METAL);
+		metal.setForeground(Color.WHITE);
+		metal.setBounds(400, 40, 200, 20);
+		add(metal);
+		
+		krysztal = new JLabel(""+Stage.KRYSZTAL);
+		krysztal.setForeground(Color.WHITE);
+		krysztal.setBounds(605, 40, 200, 20);
+		add(krysztal);
+		
+		deuter = new JLabel(""+Stage.DEUTER);
+		deuter.setForeground(Color.WHITE);
+		deuter.setBounds(805, 40, 200, 20);
+		add(deuter);
+		
+		
+		bojowaLvl = new JLabel("Technologia bojowa " + Stage.LVL_BOJOWA +" lvl");
+		ochronnaLvl = new JLabel("Technologia ochronna "+Stage.LVL_OCHRONNA +" lvl");
+		wydobywczaLvl = new JLabel("Technologia wydobywcza "+Stage.LVL_WYDOBYWCZA +" lvl");
+		bojowaLvl.setForeground(Color.WHITE);
+		ochronnaLvl.setForeground(Color.WHITE);
+		wydobywczaLvl.setForeground(Color.WHITE);
+		bojowaLvl.setBounds(400,130,150,30);
+		ochronnaLvl.setBounds(400,250,200,30);
+		wydobywczaLvl.setBounds(400,370,250,30);
+		add(bojowaLvl);
+		add(ochronnaLvl);
+		add(wydobywczaLvl);
+		
+		
+		podmet = new JLabel("Metal");
+		podkry = new JLabel("Krysztal");
+		poddeu = new JLabel("Deuter");
+	//podmet.setOpaque(true);
+	//podmet.setBackground(Color.BLUE);
+		podmet.setForeground(Color.WHITE);
+		podkry.setForeground(Color.WHITE);
+		poddeu.setForeground(Color.WHITE);
+		podmet.setBounds(353,15,150,30);
+		podkry.setBounds(548,15,150,30);
+		poddeu.setBounds(750,15,150,30);
+		add(podmet);
+		add(podkry);
+		add(poddeu);
+		
+		opisBojowa = new JTextArea();
+		Font dialog = new Font("Serif" , Font.ITALIC,13);
+		opisBojowa.setForeground(Color.RED);
+		opisBojowa.setFont(dialog);
+		opisBojowa.setText("Technologia bojowa usprawnia systemy bojowe.\nKa¿dy poziom technologii bojowej podwy¿sza moc\nbojow¹ jednostek o 10% wartoœci pocz¹tkowej.");
+		opisBojowa.setBackground(Color.GRAY);
+		opisBojowa.setEditable(false);
+		opisBojowa.setOpaque(false);
+		opisBojowa.setBounds(400, 150, 295, 95);
+		add(opisBojowa);
+		//////////////////////////////////////////
+		
+		opisOchronna = new JTextArea();
+		opisOchronna.setForeground(Color.RED);
+		opisOchronna.setFont(dialog);
+		opisOchronna.setText("Technologia ochronna usprawnia pow³oki ochronne\nwokó³ statków i systemów obronnych. Ka¿dy poziom\ntechnologii ochronnej podwy¿sza efektywnoœæ pow³ok\no 10% wartoœci podstawowej.");
+		//textkrys.setBackground(Color.GRAY);
+		opisOchronna.setEditable(false);
+		opisOchronna.setOpaque(false);
+		opisOchronna.setBounds(400, 270, 295, 95);
+		add(opisOchronna);
+		/////////////////////////////////////////
+		
+		opisWydobywcza = new JTextArea();
+		opisWydobywcza.setForeground(Color.RED);
+		opisWydobywcza.setFont(dialog);
+		opisWydobywcza.setText("Technologia wydobywcza zosta³a opracowana przez\nspecjalistyczny zespó³ naukowców. Dziêki\nzastosowaniu po³¹czenia komputerów i energii\nmo¿liwe jest pozyskiwanie zló¿ metalu i kryszta³u\nw mniejszym czasie ni¿ dotychczas. Ka¿dy poziom tej\ntechnologii zwiêksza wydobycie surowców 2%.");
+		//textdeu.setBackground(Color.GRAY);
+		opisWydobywcza.setEditable(false);
+		opisWydobywcza.setOpaque(false);
+		opisWydobywcza.setBounds(400, 390, 295, 130);
+		add(opisWydobywcza);
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

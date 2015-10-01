@@ -1,0 +1,266 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class ObronaOpisy extends JComponent {
+	public static JLabel needs,needsLaser,needsIon,needsGauss, metal , cristal , deuterium ,laser,ion,gauss,captionMetal,captionCristal,captionDeuterium,costsLaser,costsIon,costsGauss;
+	JTextArea textLaser,textIon,textGauss,textureLaser,textureIon,textureGauss ;
+	JButton buildLaser,buildIon,buildGauss;
+	
+	public static int COSTS_LASER_METAL = 1000 ;
+	public static int COSTS_LASER_CRISTAL = 2000 ;
+	public static int COSTS_LASER_DEUTERIUM = 3000 ;
+	
+	public static int COST_ION_METAL = 3000 ;
+	public static int COST_ION_CRISTALL = 4000 ;
+	public static int COST_ION_DEUTERIUM = 5000 ;
+	
+	public static int COST_GAUSS_METAL = 8000 ;
+	public static int COST_GAUSS_CRISTAL = 7000 ;
+	public static int COST_GAUSS_DEUTERIUM = 6000 ;
+	
+	
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+			
+				if(source == buildLaser){
+					try{
+						int i = Integer.parseInt(textureLaser.getText());
+							if(Stage.METAL> i*COSTS_LASER_METAL && Stage.CRISTAL > i * COSTS_LASER_CRISTAL && Stage.DEUTERIUM > i * COSTS_LASER_DEUTERIUM){
+								Stage.METAL-=i*COSTS_LASER_METAL;
+								Stage.CRISTAL-=i*COSTS_LASER_CRISTAL;
+								Stage.DEUTERIUM-=i*COSTS_LASER_DEUTERIUM;
+								Stage.GUN_LASER += i ;
+								laser.setText("Dzia³o laserowe " + Stage.GUN_LASER+" sztuk");
+							}
+						
+						}catch(Exception R){
+							textureLaser.setText("0");
+							
+						}
+				}
+				if(source == buildIon){
+					try{
+						int i = Integer.parseInt(textureIon.getText());
+							if(Stage.METAL> i*COST_ION_METAL&&  Stage.CRISTAL > i * COST_ION_CRISTALL && Stage.DEUTERIUM > i * COST_ION_DEUTERIUM){
+								Stage.METAL-=i*COST_ION_METAL;
+								Stage.CRISTAL-=i*COST_ION_CRISTALL;
+								Stage.DEUTERIUM-=i*COST_ION_DEUTERIUM;
+								Stage.GUN_ION += i ;
+								ion.setText("Dzia³o jonowe " + Stage.GUN_ION+" sztuk");
+							}
+						
+						}catch(Exception R){
+							textureIon.setText("0");
+							
+						}
+				}
+				
+				if(source == buildGauss){
+					try{
+						int i = Integer.parseInt(textureGauss.getText());
+							if(Stage.METAL> i*COST_GAUSS_METAL && Stage.CRISTAL > i * COST_GAUSS_CRISTAL && Stage.DEUTERIUM > i * COST_GAUSS_DEUTERIUM){
+								Stage.METAL-=i*COST_GAUSS_METAL;
+								Stage.CRISTAL-=i*COST_GAUSS_CRISTAL;
+								Stage.DEUTERIUM-=i*COST_GAUSS_DEUTERIUM;
+								Stage.GUN_GAUSS += i ;
+								gauss.setText("Dzia³o Gaussa" + Stage.GUN_GAUSS+" sztuk");
+							}
+						
+						}catch(Exception R){
+							textureGauss.setText("0");
+							
+						}
+				}
+				
+		}
+			
+		};
+	
+	
+	
+	
+	public ObronaOpisy(){
+		
+		needs = new JLabel();
+		needs.setBounds(812,140,150,40);
+		needs.setForeground(Color.RED);
+		needs.setText("WYMAGANIA:");
+		add(needs);
+		
+		
+		needsLaser = new JLabel();
+		needsLaser.setBounds(805,170,150,40);
+		needsLaser.setForeground(Color.WHITE);
+		needsLaser.setText("Stocznia 10 lvl");
+		add(needsLaser);
+		
+		needsIon = new JLabel();
+		needsIon.setBounds(805,290,150,40);
+		needsIon.setForeground(Color.WHITE);
+		needsIon.setText("Stocznia 15 lvl");
+		add(needsIon);
+		
+		needsGauss = new JLabel();
+		needsGauss.setBounds(805,410,150,40);
+		needsGauss.setForeground(Color.WHITE);
+		needsGauss.setText("Stoczina 20 lvl");
+		add(needsGauss);
+		
+		
+		costsLaser = new JLabel();
+		costsLaser.setBounds(400,195,400,70);
+		costsLaser.setForeground(Color.WHITE);
+		costsLaser.setText("Potrzebne surowce: Metal 1000 Kryszta³ 2000, deuter 3000");
+		add(costsLaser);
+		
+		
+		costsIon = new JLabel();
+		costsIon.setBounds(400,320,400,70);
+		costsIon.setForeground(Color.WHITE);
+		costsIon.setText("Potrzebne surowce: Metal 3000 Kryszta³ 4000, deuter 5000");
+		add(costsIon);
+	
+		costsGauss = new JLabel();
+		costsGauss.setBounds(400,440,400,70);
+		costsGauss.setForeground(Color.WHITE);
+		costsGauss.setText("Potrzebne surowce: Metal 8000 Kryszta³ 7000, deuter 6000");
+		add(costsGauss);
+		
+		
+		
+		
+		
+		textureLaser = new JTextArea("0");
+		textureLaser.setBounds(710, 150, 80, 20);
+		textureLaser.setBackground(Color.WHITE);
+		add(textureLaser);
+		
+		textureIon = new JTextArea("0");
+		textureIon.setBounds(710, 270, 80, 20);
+		textureIon.setBackground(Color.WHITE);
+		add(textureIon);
+		
+		textureGauss = new JTextArea("0");
+		textureGauss.setBounds(710, 390, 80, 20);
+		textureGauss.setBackground(Color.WHITE);
+		add(textureGauss);
+		
+		
+		
+		
+		
+		metal = new JLabel(""+Stage.METAL);
+		metal.setForeground(Color.WHITE);
+		metal.setBounds(400, 40, 200, 20);
+		add(metal);
+		
+		cristal = new JLabel(""+Stage.CRISTAL);
+		cristal.setForeground(Color.WHITE);
+		cristal.setBounds(605, 40, 200, 20);
+		add(cristal);
+		
+		deuterium = new JLabel(""+Stage.DEUTERIUM);
+		deuterium.setForeground(Color.WHITE);
+		deuterium.setBounds(805, 40, 200, 20);
+		add(deuterium);
+		
+		laser = new JLabel("Dzia³o laserowe " + Stage.GUN_LASER +" sztuk");
+		ion = new JLabel("Dzia³o jonowe "+Stage.GUN_ION +" sztuk");
+		gauss = new JLabel("Dzia³o Gaussa "+Stage.GUN_GAUSS +" sztuk");
+		laser.setForeground(Color.WHITE);
+		ion.setForeground(Color.WHITE);
+		gauss.setForeground(Color.WHITE);
+		laser.setBounds(400,130,300,30);
+		ion.setBounds(400,250,300,30);
+		gauss.setBounds(400,370,300,30);
+		add(laser);
+		add(ion);
+		add(gauss);
+		
+		
+		captionMetal = new JLabel("Metal");
+		captionCristal = new JLabel("Krysztal");
+		captionDeuterium = new JLabel("Deuter");
+	//podmet.setOpaque(true);
+	//podmet.setBackground(Color.BLUE);
+		captionMetal.setForeground(Color.WHITE);
+		captionCristal.setForeground(Color.WHITE);
+		captionDeuterium.setForeground(Color.WHITE);
+		captionMetal.setBounds(353,15,150,30);
+		captionCristal.setBounds(548,15,150,30);
+		captionDeuterium.setBounds(750,15,150,30);
+		add(captionMetal);
+		add(captionCristal);
+		add(captionDeuterium);
+		
+		textLaser = new JTextArea();
+		Font dialog = new Font("Serif" , Font.ITALIC,13);
+		textLaser.setForeground(Color.RED);
+		textLaser.setFont(dialog);
+		textLaser.setText("Przez skoncentrowany ostrza³ wybranego celu fotonami\nmo¿na wyrz¹dziæ znacznie wiêksze szkody ni¿\nprzy pomocy zwyk³ej broni balistycznej.");
+		textLaser.setBackground(Color.GRAY);
+		textLaser.setEditable(false);
+		textLaser.setOpaque(false);
+		textLaser.setBounds(400, 150, 295, 95);
+		add(textLaser);
+		//////////////////////////////////////////
+		
+		textIon = new JTextArea();
+		textIon.setForeground(Color.RED);
+		textIon.setFont(dialog);
+		textIon.setText("Dzia³o jonowe przyœpiesza jony skierowane na\ncel ataku. Destabilizuj¹ one pow³okê ochronn¹\ni w skutek zmian elektromagnetycznych uszkadzaj¹ elektronikê.");
+		//textkrys.setBackground(Color.GRAY);
+		textIon.setEditable(false);
+		textIon.setOpaque(false);
+		textIon.setBounds(400, 270, 295, 95);
+		add(textIon);
+		/////////////////////////////////////////
+		
+		textGauss = new JTextArea();
+		textGauss.setForeground(Color.RED);
+		textGauss.setFont(dialog);
+		textGauss.setText("Dzia³o Gaussa przyœpiesza kilkutonowe pociski, wykorzystuj¹c\nprzy tym gigantyczn¹ iloœæ energii.");
+		//textdeu.setBackground(Color.GRAY);
+		textGauss.setEditable(false);
+		textGauss.setOpaque(false);
+		textGauss.setBounds(400, 390, 295, 95);
+		add(textGauss);
+		
+		
+		buildLaser = new JButton("Buduj");
+		buildLaser.setBounds(700, 180, 100, 20);
+		buildLaser.addActionListener(al);
+		add(buildLaser);
+		
+
+		buildIon = new JButton("Buduj");
+		buildIon.setBounds(700,300,100,20);
+		buildIon.addActionListener(al);
+		add(buildIon);
+		
+		buildGauss = new JButton("Buduj");
+		buildGauss.setBounds(700, 420, 100, 20);
+		buildGauss.addActionListener(al);
+		add(buildGauss);
+		
+		
+		
+		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
+		setVisible(true);
+		
+		
+		
+	}
+
+}

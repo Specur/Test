@@ -1,0 +1,141 @@
+package gramy;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.*;
+import javax.xml.transform.Source;
+
+import static java.lang.Math.*;
+
+public class Ogame extends JFrame {
+	int g = 0;
+	JLabel miejscaNaPlanecie ;
+	JTextArea zegar ;
+	Date czas;
+	JTabbedPane tp;
+	JPanel Przegladd;
+	Zegar zegarr;
+	public static int spr , spr2 ;
+	Timer timer = new Timer(1000, new ActionListener() {
+		 public void actionPerformed(ActionEvent evt) {
+			 
+			 	Stage.METAL += 1+(30*Stage.LVL_METAL*pow(1.1,Stage.LVL_METAL)+0.05*Stage.LVL_WYDOBYWCZA*( 1+(30*Stage.LVL_METAL*pow(1.1,Stage.LVL_METAL))));
+			 	Opisy.metal.setText(""+Stage.METAL);
+			 	OpisyPrzeglad.metal.setText(""+Stage.METAL);
+			 	BudynkiOpisy.metal.setText(""+Stage.METAL);
+			 	BadaniaOpisy.metal.setText(""+Stage.METAL);
+			 	FlotaOpisy.metal.setText(""+Stage.METAL);
+			 	ObronaOpisy.metal.setText(""+Stage.METAL);
+			 	
+			 	Stage.KRYSZTAL+= 1+(20*Stage.LVL_KRYSZTAL*pow(1.1,Stage.LVL_KRYSZTAL)+0.05*Stage.LVL_WYDOBYWCZA*(1+(20*Stage.LVL_KRYSZTAL*pow(1.1,Stage.LVL_KRYSZTAL))));
+			 	Opisy.krysztal.setText(""+Stage.KRYSZTAL);
+			 	OpisyPrzeglad.krysztal.setText(""+Stage.KRYSZTAL);
+			 	BudynkiOpisy.krysztal.setText(""+Stage.KRYSZTAL);
+			 	BadaniaOpisy.krysztal.setText(""+Stage.KRYSZTAL);
+			 	FlotaOpisy.krysztal.setText(""+Stage.KRYSZTAL);
+			 	ObronaOpisy.krysztal.setText(""+Stage.KRYSZTAL);
+			 	
+			 	Stage.DEUTER+=1+(10*Stage.LVL_DEUTER*pow(1.1,Stage.LVL_DEUTER)+0.05*Stage.LVL_WYDOBYWCZA*(1+(10*Stage.LVL_DEUTER*pow(1.1,Stage.LVL_DEUTER))));
+			 	Opisy.deuter.setText(""+Stage.DEUTER);
+			 	BudynkiOpisy.deuter.setText(""+Stage.DEUTER);
+			 	OpisyPrzeglad.deuter.setText(""+Stage.DEUTER);
+			 	BadaniaOpisy.deuter.setText(""+Stage.DEUTER);
+			 	FlotaOpisy.deuter.setText(""+Stage.DEUTER);
+			 	ObronaOpisy.deuter.setText(""+Stage.DEUTER);
+			 	miejscaNaPlanecie.setText("Wolnych miejsc do zabudowy na planecie :" + (Stage.MAX_LVL-Stage.AKTUALNY_LVL));
+			 	
+			 	
+			 	g++;
+			 	if( g == 5){
+			 		g++ ;
+			 		JFrame oo = new Wynik();
+			 		add(oo);
+			 		
+			 	}
+		 }
+		});
+	
+	public Ogame(){
+		
+		czas = new Date();
+		spr = czas.getMinutes()+15;
+		 spr2 = czas.getHours();
+		if(spr>=60){
+			spr-=60 ;
+			spr2 +=1;
+			if(spr2>=24){
+				spr2 = 0;
+			}
+		}
+		
+		zegar = new JTextArea();
+		zegar.setForeground(Color.RED);
+		zegar.setOpaque(false);
+		zegar.setText("                       UWAGA!!!\nObca flota zbli¿a siê do twojej planety.\n        Ude¿y o godzinie "+spr2+":"+spr+":"+czas.getSeconds()+"."+"\nMasz ma³o czasu na rozbudowe Ganimedes.\n               Bierz siê do roboty!");
+		zegar.setBounds(10, 110, 300, 100);
+		zegar.setEditable(false);
+		add(zegar);
+		
+		miejscaNaPlanecie = new JLabel();
+		miejscaNaPlanecie.setForeground(Color.WHITE);
+		miejscaNaPlanecie.setBounds(10, 500, 500, 20);
+		miejscaNaPlanecie.setText("Wolnych miejsc do zabudowy na planecie : " + (Stage.MAX_LVL-Stage.AKTUALNY_LVL));
+		add(miejscaNaPlanecie);
+		
+		
+		 tp = new JTabbedPane();
+		timer.start();
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		
+		 zegarr = new Zegar();
+		add(zegarr);
+		zegarr.start();
+		
+		 Przegladd = new Przeglad();
+		tp.add("Przegl¹d",Przegladd);
+		
+		JPanel Surowcee = new Surowce();
+		tp.add("Surowce", Surowcee);
+		
+		JPanel Budynki = new Budynki();
+		tp.add("Budynki",Budynki);
+		
+		JPanel Badania = new Badania();
+		tp.add("Badania",Badania);
+		
+		JPanel Flota = new Flota();
+		tp.add("Flota", Flota);
+		
+		JPanel Obrona = new Obrona();
+		tp.add("Obrona", Obrona);
+		
+		tp.setBounds(1,1,Stage.SZEROKOSC , Stage.WYSOKOSC);
+		add(tp);
+		
+		
+	
+
+		setBounds(0, 0, Stage.SZEROKOSC , Stage.WYSOKOSC);
+		setVisible(true);
+		
+		
+	}
+	
+
+
+public static void main(String[] args){
+	SwingUtilities.invokeLater(new Runnable(){
+		public void run(){
+			new Ogame();
+		}
+	});
+	 
+	
+}
+}

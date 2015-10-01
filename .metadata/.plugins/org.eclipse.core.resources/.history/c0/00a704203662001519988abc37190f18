@@ -1,0 +1,17 @@
+package gramy;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class Budynki extends JPanel{
+	
+	public Budynki(){
+		
+		
+		JPanel Budynki = new BudynkiObrazki();
+		add(Budynki);
+		
+		
+	}
+
+}

@@ -1,0 +1,20 @@
+package gramy;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class Budynki extends JScrollPane{
+	
+	public Budynki(){
+		setLayout(null);
+		
+		JPanel Budynki = new BudynkiObrazki();
+		add(Budynki);
+		
+		createVerticalScrollBar();
+		setBounds(1,1,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

@@ -1,0 +1,91 @@
+package gramy;
+
+import static java.lang.Math.pow;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class BudynkiPrzyciski extends JComponent {
+	JButton podniesLaboratorium,podniesStocznie,podniesTerrafometr; 
+	
+	
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+			if(Stage.AKTUALNY_LVL<Stage.MAX_LVL){
+				if(source == podniesStocznie&& Stage.METAL>BudynkiOpisy.KOSZTY_STOCZNIA_METAL*pow(1.5,Stage.LVL_STOCZNIA-1) && Stage.KRYSZTAL > BudynkiOpisy.KOSZTY_STOCZNIA_KRYSZTAL*pow(1.5,Stage.LVL_STOCZNIA-1)){
+					Stage.METAL-=BudynkiOpisy.KOSZTY_STOCZNIA_METAL*pow(1.5,Stage.LVL_STOCZNIA-1);
+					Stage.KRYSZTAL -= BudynkiOpisy.KOSZTY_STOCZNIA_KRYSZTAL*pow(1.5,Stage.LVL_STOCZNIA-1);
+					Stage.LVL_STOCZNIA+=1;
+					BudynkiOpisy.stoczniaKoszty.setText("Potrzebne surowce: Metal "+(int)(BudynkiOpisy.KOSZTY_STOCZNIA_METAL*pow(1.5,Stage.LVL_STOCZNIA-1))+" Krysztal "+(int)( BudynkiOpisy.KOSZTY_STOCZNIA_KRYSZTAL*pow(1.5,Stage.LVL_STOCZNIA-1)));
+					BudynkiOpisy.stocznialvl.setText("Stocznia " + Stage.LVL_STOCZNIA+" lvl");
+				}
+				if(source == podniesLaboratorium && Stage.METAL>BudynkiOpisy.KOSZTY_LABORATORIUM_METAL*pow(1.6,Stage.LVL_LABORATORIUM-1) && Stage.KRYSZTAL > BudynkiOpisy.KOSZTY_LABORATORIUM_KRYSZTAL*pow(1.5,Stage.LVL_LABORATORIUM-1)){
+					Stage.METAL-=BudynkiOpisy.KOSZTY_LABORATORIUM_METAL*pow(1.6,Stage.LVL_LABORATORIUM-1);
+					Stage.KRYSZTAL-=BudynkiOpisy.KOSZTY_LABORATORIUM_KRYSZTAL*pow(1.5,Stage.LVL_LABORATORIUM-1);
+					Stage.LVL_LABORATORIUM+=1;
+					BudynkiOpisy.labKoszty.setText("Potrzebne surowce: Metal "+(int)(BudynkiOpisy.KOSZTY_LABORATORIUM_METAL*pow(1.6,Stage.LVL_LABORATORIUM-1) )+" Krysztal "+(int)(BudynkiOpisy.KOSZTY_LABORATORIUM_KRYSZTAL*pow(1.5,Stage.LVL_LABORATORIUM-1)));
+					BudynkiOpisy.lablvl.setText("Labolatorium " + Stage.LVL_LABORATORIUM+" lvl");
+				}
+				
+				
+				
+				if(source == podniesTerrafometr && Stage.METAL>BudynkiOpisy.KOSZTY_TERRAFOMETR_METAL*pow(1.6,Stage.LVL_TERRAFOMETR-1) && Stage.KRYSZTAL > BudynkiOpisy.KOSZTY_TERRAFOMETR_KRYSZTAL*pow(1.5,Stage.LVL_TERRAFOMETR-1) ){
+					Stage.METAL -= BudynkiOpisy.KOSZTY_TERRAFOMETR_METAL*pow(1.6,Stage.LVL_TERRAFOMETR-1);
+					Stage.KRYSZTAL -=BudynkiOpisy.KOSZTY_TERRAFOMETR_KRYSZTAL*pow(1.5,Stage.LVL_TERRAFOMETR-1);
+					Stage.LVL_TERRAFOMETR+=1;
+					BudynkiOpisy.terrafometrKoszty.setText("Potrzebne surowce: Metal "+(int)(BudynkiOpisy.KOSZTY_TERRAFOMETR_METAL*pow(1.6,Stage.LVL_TERRAFOMETR-1) )+" Krysztal "+(int)(BudynkiOpisy.KOSZTY_TERRAFOMETR_KRYSZTAL*pow(1.5,Stage.LVL_TERRAFOMETR-1)));
+					BudynkiOpisy.terrafometrlvl.setText("Terrafometr " + Stage.LVL_TERRAFOMETR +" lvl");
+					Stage.MAX_LVL += 3 ;
+					OpisyPrzeglad.zabudowa.setMaximum(Stage.MAX_LVL);
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				Stage.AKTUALNY_LVL +=1 ;
+				OpisyPrzeglad.zabudowa.setValue(Stage.AKTUALNY_LVL);
+			}else{
+				podniesLaboratorium.setText("Ciasno");
+				podniesStocznie.setText("Ciasno");
+				podniesTerrafometr.setText("Ciasno");
+			}
+			}
+		};
+	
+	public BudynkiPrzyciski(){
+		podniesLaboratorium = new JButton("Buduj");
+		podniesLaboratorium.setBounds(700, 180, 100, 20);
+		podniesLaboratorium.addActionListener(al);
+		add(podniesLaboratorium);
+		
+
+		podniesStocznie = new JButton("Buduj");
+		podniesStocznie.setBounds(700,300,100,20);
+		podniesStocznie.addActionListener(al);
+		add(podniesStocznie);
+		
+		podniesTerrafometr = new JButton("Buduj");
+		podniesTerrafometr.setBounds(700, 420, 100, 20);
+		podniesTerrafometr.addActionListener(al);
+		add(podniesTerrafometr);
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

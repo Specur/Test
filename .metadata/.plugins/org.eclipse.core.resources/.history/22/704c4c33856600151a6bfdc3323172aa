@@ -1,0 +1,63 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+
+public class Wynik extends JFrame{
+	JLabel rezultat,punkty,mojaFlota,komputerFlota,zabudowabudynkunapis,napis ;
+	JTextArea podsumowanie ,podsumowanieKomputer ;
+	public Wynik(){
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		getContentPane().setBackground(Color.BLUE);
+		double mojepkt = Stage.DZIALO_LASEROWE + (2.1*Stage.DZIALO_JONOWE)+(4*Stage.DZIALO_GAUSSA)+(2.3*Stage.STATKI_KRAZOWNIK)+(5*Stage.STATKI_BABOWIEC)+(15*Stage.STATKI_GWIAZDA_SMIERCI);
+		Font czcionka = new Font("serif",Font.BOLD,50);
+		Font czcionkaa = new Font("serif",Font.BOLD,20);
+			
+			if(mojepkt>1000){
+			punkty = new JLabel("ZWYCIESTWO");
+			punkty.setBounds(100,100,500,110);
+			punkty.setForeground(Color.BLACK);
+			punkty.setFont(czcionka);
+			add(punkty);
+			}else{
+			rezultat = new JLabel("PRZEGRANA");
+			rezultat.setBounds(410,250,500,110);
+			rezultat.setForeground(Color.BLACK);
+			rezultat.setFont(czcionka);
+			add(rezultat);
+			}
+			
+			podsumowanie = new JTextArea("Obroñca :\nDzia³o laserowe "+Stage.DZIALO_LASEROWE+"\nDzia³o jonowe "+Stage.DZIALO_JONOWE+"\nDzia³o Gaussa "+Stage.DZIALO_GAUSSA+"\nKr¹¿ownik "+Stage.STATKI_KRAZOWNIK+"\nB¹bowiec "+Stage.STATKI_BABOWIEC+"\nGwiazda Œmierci "+Stage.STATKI_GWIAZDA_SMIERCI);
+			podsumowanie.setOpaque(false);
+			podsumowanie.setFont(czcionkaa);
+			podsumowanie.setEditable(false);
+			podsumowanie.setBounds(200,350,800,500);
+			podsumowanie.setForeground(Color.WHITE);
+			add(podsumowanie);
+			
+			podsumowanieKomputer = new JTextArea("Atakuj¹cy :\nKr¹¿ownik 100\nB¹bowiec 100\nGwiazda Œmierci 30");
+			podsumowanieKomputer.setOpaque(false);
+			podsumowanieKomputer.setFont(czcionkaa);
+			podsumowanieKomputer.setEditable(false);
+			podsumowanieKomputer.setBounds(800,350,800,500);
+			podsumowanieKomputer.setForeground(Color.WHITE);
+			add(podsumowanieKomputer);
+			
+			
+			
+			
+			
+			
+		setBounds(0, 0, Stage.SZEROKOSC , Stage.WYSOKOSC);
+		setVisible(true);
+			
+		}	
+	}
+
+
