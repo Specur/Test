@@ -1,0 +1,18 @@
+package gramy;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Flota extends JPanel{
+	
+	public Flota(){
+		setLayout(null);
+		
+		JPanel Obrazki = new FlotaObrazki();
+		add(Obrazki);
+		
+		setBounds(0, 0, Stage.SZEROKOSC , Stage.WYSOKOSC);
+		setVisible(true);
+	}
+
+}

@@ -1,0 +1,150 @@
+package gramy;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+
+
+public class Przyciski extends JComponent {
+	private static JButton budujKrysztal,budujMetal,budujDeuter;
+	JProgressBar metal,krysztal,deuter ;
+	
+	/*
+	 Timer timerr = new Timer(1000, new ActionListener(){
+			int g = 0 ;
+			public void actionPerformed(ActionEvent ae){
+				
+				metal.setValue(++g);
+				
+				if(g == 10){
+					g = 0 ;
+					metal.setValue(0);
+					timerr.stop();
+				}
+			}
+			
+		});
+	
+	 Timer timer = new Timer(1000, new ActionListener(){
+			int g = 0 ;
+			public void actionPerformed(ActionEvent ae){
+				
+				krysztal.setValue(++g);
+				
+				if(g == 10){
+					g = 0 ;
+					krysztal.setValue(0);
+					timer.stop();
+				}
+			}
+			
+		});
+	 
+	 Timer timerrr = new Timer(1000, new ActionListener(){
+			int g = 0 ;
+			public void actionPerformed(ActionEvent ae){
+				
+				deuter.setValue(++g);
+				
+				if(g == 10){
+				
+					g = 0 ;
+					deuter.setValue(0);
+					timerrr.stop();
+				}
+			}
+			
+		});
+	 
+	 */
+	ActionListener al = new ActionListener(){
+		
+		public void actionPerformed(ActionEvent ae){
+			Object source = ae.getSource();
+			
+			
+			
+			
+			
+			if(Stage.AKTUALNY_LVL<Stage.MAX_LVL){
+				if(source == budujMetal){
+					
+					//timerr.start();
+					 
+					Stage.LVL_METAL+=1;
+					Opisy.metallvl.setText("Kopalnia Metalu " + Stage.LVL_METAL+" lvl");
+					
+				}
+				if(source == budujKrysztal){
+				//	timer.start();
+					Stage.LVL_KRYSZTAL+=1;
+					Opisy.krysztallvl.setText("Kopalnia Kryszta³u " + Stage.LVL_KRYSZTAL+" lvl");
+				}
+				if(source == budujDeuter){
+				//	timerrr.start();
+					Stage.LVL_DEUTER+=1;
+					Opisy.deuterlvl.setText("Kopalnia Deuteru " + Stage.LVL_DEUTER +" lvl");
+				}
+				Stage.AKTUALNY_LVL +=1 ;
+				OpisyPrzeglad.zabudowa.setValue(Stage.AKTUALNY_LVL);
+			}else{
+				budujKrysztal.setText("Ciasno");
+				budujDeuter.setText("Ciasno");
+				budujMetal.setText("Ciasno");
+			}
+			}
+		};
+	public Przyciski(){
+		
+		metal = new JProgressBar(0,10);
+		metal.setBounds(1, 1, 200, 50);
+		metal.setStringPainted(true);
+		
+		metal.setBorderPainted(true);
+		add(metal);
+		
+		krysztal = new JProgressBar(0,10);
+		krysztal.setBounds(1, 251, 200, 50);
+		krysztal.setStringPainted(true);
+		
+		krysztal.setBorderPainted(true);
+		add(krysztal);
+		
+		
+		deuter = new JProgressBar(0,10);
+		deuter.setBounds(1, 441, 200, 50);
+		deuter.setStringPainted(true);
+		
+		deuter.setBorderPainted(true);
+		add(deuter);
+		
+		
+		budujKrysztal = new JButton("Buduj");
+		budujKrysztal.setBounds(700, 300, 100, 20);
+		budujKrysztal.addActionListener(al);
+		add(budujKrysztal);
+		
+
+		budujMetal = new JButton("Buduj");
+		budujMetal.setBounds(700,180,100,20);
+		budujMetal.addActionListener(al);
+		add(budujMetal);
+		
+		budujDeuter = new JButton("Buduj");
+		budujDeuter.setBounds(700, 420, 100, 20);
+		budujDeuter.addActionListener(al);
+		add(budujDeuter);
+		
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

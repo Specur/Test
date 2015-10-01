@@ -1,0 +1,37 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+
+public class Wynik extends JFrame{
+	JLabel rezultat,punkty,mojaFlota,komputerFlota,zabudowabudynkunapis,napis ;
+	public Wynik(){
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		getContentPane().setBackground(Color.BLUE);
+		double mojepkt = Stage.DZIALO_LASEROWE + (2.1*Stage.DZIALO_JONOWE)+(4*Stage.DZIALO_GAUSSA)+(2.3*Stage.STATKI_KRAZOWNIK)+(5*Stage.STATKI_BABOWIEC)+(15*Stage.STATKI_GWIAZDA_SMIERCI);
+		Font czcionka = new Font("serif",Font.BOLD,50);
+	
+			
+			if(mojepkt>1000){
+			punkty = new JLabel("ZWYCIESTWO");
+			punkty.setBounds(100,100,300,110);
+			punkty.setForeground(Color.BLACK);
+			add(punkty);
+			}else{
+			rezultat = new JLabel("PRZEGRANA");
+			rezultat.setBounds(100,100,300,110);
+			rezultat.setForeground(Color.BLACK);
+			add(rezultat);
+			}
+		setBounds(0, 0, Stage.SZEROKOSC , Stage.WYSOKOSC);
+		setVisible(true);
+			
+		}	
+	}
+
+

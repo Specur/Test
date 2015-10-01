@@ -1,0 +1,95 @@
+package gramy;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+
+
+public class Przyciski extends JComponent {
+	private static JButton budkry,budmet,buddeu;
+	JProgressBar met,krys,deu;
+	
+	ActionListener al = new ActionListener(){
+		
+		public void actionPerformed(ActionEvent ae){
+			Object source = ae.getSource();
+			
+			
+			
+			
+			 Timer timer = new Timer(100, new ActionListener(){
+				private int loo = 1 ;
+				public void actionPerformed(ActionEvent ae){
+					met.setValue(++loo);
+					
+					
+				}
+				
+			});
+			if(Stage.AKTUALNY_LVL<Stage.MAX_LVL){
+				if(source == budmet){
+					met.setMinimum(0);
+					met.setMaximum(10);
+					timer.start();
+					
+					Stage.LVL_METAL+=1;
+					Opisy.metallvl.setText("Kopalnia Metalu " + Stage.LVL_METAL+" lvl");
+					
+					
+					
+					
+					
+				}
+				if(source == budkry){
+					Stage.LVL_KRYSZTAL+=1;
+					Opisy.krysztallvl.setText("Kopalnia Kryszta³u " + Stage.LVL_KRYSZTAL+" lvl");
+				}
+				if(source == buddeu){
+					Stage.LVL_DEUTER+=1;
+					Opisy.deuterlvl.setText("Kopalnia Deuteru " + Stage.LVL_DEUTER +" lvl");
+				}
+				Stage.AKTUALNY_LVL +=1 ;
+				OpisyPrzeglad.zabudowa.setValue(Stage.AKTUALNY_LVL);
+			}else{
+				budkry.setText("Ciasno");
+				budmet.setText("Ciasno");
+				buddeu.setText("Ciasno");
+			}
+			}
+		};
+	public Przyciski(){
+		
+		JProgressBar met = new JProgressBar();
+		met.setBounds(1, 1, 100, 50);
+		met.setBorderPainted(true);
+		add(met);
+		
+		budkry = new JButton("Buduj");
+		budkry.setBounds(700, 300, 100, 20);
+		budkry.addActionListener(al);
+		add(budkry);
+		
+
+		budmet = new JButton("Buduj");
+		budmet.setBounds(700,180,100,20);
+		budmet.addActionListener(al);
+		add(budmet);
+		
+		buddeu = new JButton("Buduj");
+		buddeu.setBounds(700, 420, 100, 20);
+		buddeu.addActionListener(al);
+		add(buddeu);
+		
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

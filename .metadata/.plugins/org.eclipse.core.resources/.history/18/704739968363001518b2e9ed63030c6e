@@ -1,0 +1,97 @@
+package gramy;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JProgressBar;
+import javax.swing.Timer;
+
+
+public class Przyciski extends JComponent {
+	private static JButton budujKrysztal,budujMetal,budujDeuter;
+	JProgressBar metal,krysztal,deuter ,met;
+	
+	
+	 Timer timer = new Timer(100, new ActionListener(){
+			int g = 0 ;
+			public void actionPerformed(ActionEvent ae){
+				g++;
+				met.setValue(g);
+				
+				if(g == 10){
+					timer.stop();
+				}
+			}
+			
+		});
+	
+	ActionListener al = new ActionListener(){
+		
+		public void actionPerformed(ActionEvent ae){
+			Object source = ae.getSource();
+			
+			
+			
+			
+			
+			if(Stage.AKTUALNY_LVL<Stage.MAX_LVL){
+				if(source == budujMetal){
+					
+					timer.start();
+					Stage.LVL_METAL+=1;
+					Opisy.metallvl.setText("Kopalnia Metalu " + Stage.LVL_METAL+" lvl");
+					
+				}
+				if(source == budujKrysztal){
+					Stage.LVL_KRYSZTAL+=1;
+					Opisy.krysztallvl.setText("Kopalnia Kryszta³u " + Stage.LVL_KRYSZTAL+" lvl");
+				}
+				if(source == budujDeuter){
+					Stage.LVL_DEUTER+=1;
+					Opisy.deuterlvl.setText("Kopalnia Deuteru " + Stage.LVL_DEUTER +" lvl");
+				}
+				Stage.AKTUALNY_LVL +=1 ;
+				OpisyPrzeglad.zabudowa.setValue(Stage.AKTUALNY_LVL);
+			}else{
+				budujKrysztal.setText("Ciasno");
+				budujDeuter.setText("Ciasno");
+				budujMetal.setText("Ciasno");
+			}
+			}
+		};
+	public Przyciski(){
+		
+		JProgressBar met = new JProgressBar(0,10);
+		met.setBounds(1, 1, 200, 50);
+		met.setStringPainted(true);
+		
+		met.setBorderPainted(true);
+		add(met);
+		
+		budujKrysztal = new JButton("Buduj");
+		budujKrysztal.setBounds(700, 300, 100, 20);
+		budujKrysztal.addActionListener(al);
+		add(budujKrysztal);
+		
+
+		budujMetal = new JButton("Buduj");
+		budujMetal.setBounds(700,180,100,20);
+		budujMetal.addActionListener(al);
+		add(budujMetal);
+		
+		budujDeuter = new JButton("Buduj");
+		budujDeuter.setBounds(700, 420, 100, 20);
+		budujDeuter.addActionListener(al);
+		add(budujDeuter);
+		
+		
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+		
+	}
+
+}

@@ -1,0 +1,72 @@
+package gramy;
+
+import static java.lang.Math.pow;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class BadaniaPrzyciski extends JComponent {
+	JButton lvlupFight , lvlupPrtection, budWydobywcza ;
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+			
+				if(source == lvlupFight && Stage.LVL_LABORATORIUM >= 10 && Stage.METAL>BadaniaOpisy.KOSZTY_BOJOWA_METAL*pow(1.5,Stage.LVL_BOJOWA-1)&& Stage.KRYSZTAL>BadaniaOpisy.KOSZTY_BOJOWA_KRYSZTAL*pow(1.5,Stage.LVL_BOJOWA-1)&& Stage.DEUTER>BadaniaOpisy.KOSZTY_BOJOWA_DEUTER*pow(1.5,Stage.LVL_BOJOWA-1)){
+					Stage.METAL-=BadaniaOpisy.KOSZTY_BOJOWA_METAL*pow(1.5,Stage.LVL_BOJOWA-1);
+					Stage.KRYSZTAL-=BadaniaOpisy.KOSZTY_BOJOWA_KRYSZTAL*pow(1.5,Stage.LVL_BOJOWA-1);
+					Stage.DEUTER-=BadaniaOpisy.KOSZTY_BOJOWA_DEUTER*pow(1.5,Stage.LVL_BOJOWA-1);
+					Stage.LVL_BOJOWA+=1;
+					BadaniaOpisy.bojowaKoszty.setText("Potrzebne surowce: Metal "+(int)(BadaniaOpisy.KOSZTY_BOJOWA_METAL*pow(1.5,Stage.LVL_BOJOWA-1))+" Krysztal "+(int)(BadaniaOpisy.KOSZTY_BOJOWA_KRYSZTAL*pow(1.5,Stage.LVL_BOJOWA-1))+ " Deuter " +(int)(BadaniaOpisy.KOSZTY_BOJOWA_DEUTER*pow(1.5,Stage.LVL_BOJOWA-1)));
+					BadaniaOpisy.bojowaLvl.setText("Technologia bojowa " + Stage.LVL_BOJOWA+" lvl");
+				}
+				if(source == lvlupPrtection &&Stage.LVL_LABORATORIUM >= 15 &&Stage.METAL>BadaniaOpisy.KOSZTY_OCHRONNA_METAL*pow(1.5,Stage.LVL_OCHRONNA-1)&& Stage.KRYSZTAL>BadaniaOpisy.KOSZTY_OCHRONNA_KRYSZTAL*pow(1.5,Stage.LVL_OCHRONNA-1)&& Stage.DEUTER>BadaniaOpisy.KOSZTY_OCHRONNA_DEUTER*pow(1.5,Stage.LVL_OCHRONNA-1)){
+					Stage.METAL -= BadaniaOpisy.KOSZTY_OCHRONNA_METAL*pow(1.5,Stage.LVL_OCHRONNA-1); 
+					Stage.KRYSZTAL -=BadaniaOpisy.KOSZTY_OCHRONNA_KRYSZTAL*pow(1.5,Stage.LVL_OCHRONNA-1);
+					Stage.DEUTER -= BadaniaOpisy.KOSZTY_OCHRONNA_DEUTER*pow(1.5,Stage.LVL_OCHRONNA-1);
+					Stage.LVL_OCHRONNA+=1;
+					BadaniaOpisy.ochronnaKoszty.setText("Potrzebne surowce: Metal "+(int)(BadaniaOpisy.KOSZTY_OCHRONNA_METAL*pow(1.5,Stage.LVL_OCHRONNA-1))+" Krysztal "+(int)(BadaniaOpisy.KOSZTY_OCHRONNA_KRYSZTAL*pow(1.5,Stage.LVL_OCHRONNA-1))+ " Deuter " +(int)(BadaniaOpisy.KOSZTY_OCHRONNA_DEUTER*pow(1.5,Stage.LVL_OCHRONNA-1)));
+					BadaniaOpisy.ochronnaLvl.setText("Technologia ochronna " + Stage.LVL_OCHRONNA+" lvl");
+				}
+				if(source == budWydobywcza  && Stage.LVL_LABORATORIUM >= 5 && Stage.METAL>BadaniaOpisy.KOSZTY_WYDOBYWCZA_METAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1)&& Stage.KRYSZTAL>BadaniaOpisy.KOSZTY_WYDOBYWCZA_KRYSZTAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1)&& Stage.DEUTER>BadaniaOpisy.KOSZTY_WYDOBYWCZA_DEUTER*pow(1.5,Stage.LVL_WYDOBYWCZA-1)){
+					Stage.METAL -= BadaniaOpisy.KOSZTY_WYDOBYWCZA_METAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1);
+					Stage.KRYSZTAL -= BadaniaOpisy.KOSZTY_WYDOBYWCZA_KRYSZTAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1);
+					Stage.DEUTER -= BadaniaOpisy.KOSZTY_WYDOBYWCZA_DEUTER*pow(1.5,Stage.LVL_WYDOBYWCZA-1);
+					Stage.LVL_WYDOBYWCZA+=1;
+					BadaniaOpisy.wydobywczaKoszty.setText("Potrzebne surowce: Metal "+(int)(BadaniaOpisy.KOSZTY_WYDOBYWCZA_METAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1))+" Krysztal "+(int)(BadaniaOpisy.KOSZTY_WYDOBYWCZA_KRYSZTAL*pow(1.5,Stage.LVL_WYDOBYWCZA-1))+ " Deuter " +(int)(BadaniaOpisy.KOSZTY_WYDOBYWCZA_DEUTER*pow(1.5,Stage.LVL_WYDOBYWCZA-1)));
+					BadaniaOpisy.wydobywczaLvl.setText("Technologia wydobywcza " + Stage.LVL_WYDOBYWCZA +" lvl");
+				}
+				
+			
+			
+			}
+		};
+	
+	
+	
+	public BadaniaPrzyciski(){
+		
+		
+		lvlupPrtection = new JButton("Buduj");
+		lvlupPrtection.setBounds(700,300,100,20);
+		lvlupPrtection.addActionListener(al);
+		add(lvlupPrtection);
+		
+		lvlupFight = new JButton("Buduj");
+		lvlupFight.setBounds(700, 180, 100, 20);
+		lvlupFight.addActionListener(al);
+		add(lvlupFight);
+	
+		
+		budWydobywcza = new JButton("Buduj");
+		budWydobywcza.setBounds(700, 420, 100, 20);
+		budWydobywcza.addActionListener(al);
+		add(budWydobywcza);
+		
+		setBounds(0,0,Stage.SZEROKOSC,Stage.HEIGHT);
+		setVisible(true);
+	}
+
+}

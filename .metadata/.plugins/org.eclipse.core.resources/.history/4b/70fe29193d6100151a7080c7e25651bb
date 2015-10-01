@@ -1,0 +1,84 @@
+package gramy;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.LinkedList;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class Obrazki extends JPanel{
+	
+	Image img,img1,imgkrysztal,imgmetal,imgdeuter,metall,kristall,deuterium;
+//	Image planeta;
+	public Obrazki(){
+		/*
+		int m ;
+		Random generator = new Random();
+		 m = generator.nextInt(10);
+		 switch(m){
+		 case 0 :planeta = loadImage("planeta.jpg"); break;
+		 case 1 :planeta = loadImage("planeta1.jpg"); break;
+		 case 2 :planeta = loadImage("planeta2.jpg"); break;
+		 case 3 :planeta = loadImage("planeta3.jpg"); break;
+		 case 4 :planeta = loadImage("planeta4.jpg"); break;
+		 case 5 :planeta = loadImage("planeta5.jpg"); break;
+		 case 6 :planeta = loadImage("planeta6.jpg"); break;
+		 case 7 :planeta = loadImage("planeta7.jpg"); break;
+		 case 8 :planeta = loadImage("planeta8.jpg"); break;
+		 case 9 :planeta = loadImage("planeta9.jpg"); break;
+		 case 10 :planeta = loadImage("planeta10.jpg"); break;
+			 
+		 
+		 }
+		
+		 */
+		 
+		 
+		
+		
+		
+		
+		
+		
+		img1 =loadImage("background.jpg");
+		imgkrysztal = loadImage("krysztal.jpg");
+		imgmetal = loadImage("metal.jpg");
+		imgdeuter = loadImage("deuter.jpg");
+		metall = loadImage("metall.gif");
+		kristall = loadImage("kristall.gif");
+		deuterium = loadImage("deuterium.gif");
+		setBounds(0,0,Stage.SZEROKOSC,Stage.WYSOKOSC);
+		setVisible(true);
+	}
+	public void paintComponent(Graphics g){
+		g.drawImage(img1, 1, 1, this);
+		
+		//g.drawImage(planeta, 950, 200, this);
+		g.drawImage(imgkrysztal, 300, 270,this);
+		g.drawImage(imgmetal, 300, 150, this);
+		g.drawImage(imgdeuter, 300, 390, this);
+		g.drawImage(metall, 350, 40, this);
+		g.drawImage(kristall, 550, 40,this);
+		g.drawImage(deuterium, 750, 40, this);
+		g.setColor(Color.WHITE);
+		
+	}
+	
+	public BufferedImage loadImage(String sciezka) {
+		URL url=null;
+		try {
+		url = getClass().getClassLoader().getResource(sciezka);
+		return ImageIO.read(url);
+		} catch (Exception e) {
+		System.out.println("error 0001"+ sciezka);
+		System.exit(0);
+		return null;
+		}
+		}
+
+}

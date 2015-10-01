@@ -1,0 +1,16 @@
+package gramy;
+
+import javax.swing.JScrollPane;
+
+public class Budynki extends JScrollPane{
+	
+	public Budynki(){
+		
+		
+		
+		
+		
+		
+	}
+
+}

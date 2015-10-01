@@ -1,0 +1,59 @@
+package gramy;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+
+public class BudynkiPrzyciski extends JComponent {
+	JButton podniesLaboratorium,podniesStocznie,podniesTerrafometr; 
+	
+	
+	ActionListener al = new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			Object source = e.getSource();
+			if(Stage.AKTUALNY_LVL<Stage.MAX_LVL){
+				if(source == podniesLaboratorium){
+					Stage.LVL_METAL+=1;
+					Opisy.metallvl.setText("Kopalnia Metalu " + Stage.LVL_METAL+" lvl");
+				}
+				if(source == podniesStocznie){
+					Stage.LVL_KRYSZTAL+=1;
+					Opisy.krysztallvl.setText("Kopalnia Kryszta³u " + Stage.LVL_KRYSZTAL+" lvl");
+				}
+				if(source == podniesTerrafometr){
+					Stage.LVL_DEUTER+=1;
+					Opisy.deuterlvl.setText("Kopalnia Deuteru " + Stage.LVL_DEUTER +" lvl");
+				}
+				Stage.AKTUALNY_LVL +=1 ;
+				OpisyPrzeglad.zabudowa.setValue(Stage.AKTUALNY_LVL);
+			}else{
+				podniesLaboratorium.setText("Ciasno");
+				podniesStocznie.setText("Ciasno");
+				podniesTerrafometr.setText("Ciasno");
+			}
+			}
+		};
+	
+	public BudynkiPrzyciski(){
+		podniesLaboratorium = new JButton("Buduj");
+		podniesLaboratorium.setBounds(700, 300, 100, 20);
+		podniesLaboratorium.addActionListener(al);
+		add(podniesLaboratorium);
+		
+
+		podniesStocznie = new JButton("Buduj");
+		podniesStocznie.setBounds(700,180,100,20);
+		podniesStocznie.addActionListener(al);
+		add(podniesStocznie);
+		
+		podniesTerrafometr = new JButton("Buduj");
+		podniesTerrafometr.setBounds(700, 420, 100, 20);
+		podniesTerrafometr.addActionListener(al);
+		add(podniesTerrafometr);
+		
+		
+	}
+
+}

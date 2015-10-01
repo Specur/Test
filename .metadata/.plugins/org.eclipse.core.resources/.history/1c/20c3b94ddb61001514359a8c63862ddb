@@ -1,0 +1,23 @@
+package gramy;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public class Przeglad extends JPanel{
+	public Przeglad(){
+		setLayout(null);
+		JComponent surka = new Surka();
+		add(surka);
+		JComponent roz = new PrzyciskiPrzeglad();
+		add(roz);
+		JComponent dwo = new OpisyPrzeglad();
+		add(dwo);
+		JPanel tri = new ObrazkiPrzeglad();
+		add(tri);
+		setBounds(0, 0, Stage.SZEROKOSC , Stage.WYSOKOSC);
+		setVisible(true);
+		
+		
+	}
+
+}
