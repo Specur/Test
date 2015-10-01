@@ -1,0 +1,148 @@
+package gramy;
+
+import static java.lang.Math.pow;
+
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class BudynkiOpisy extends JComponent {
+	public static int COST_LAB_METAL = 400 ;
+	public static int COST_LAB_CRISTAL = 200 ;
+	
+	public static int COST_SHIPYARD_METAL = 500 ;
+	public static int COST_SHIPYARD_CRISTAL = 600 ;
+	
+	public static int COST_TERRAFOMETR_METAL = 500 ;
+	public static int COST_TERRAFOMETR_CRISTAL = 500 ;
+	
+	
+	public static JLabel metal,cristal,deuterium, labLvl,shipyardLvl,terrafometrLvl,pickupMetal,pickupCristal,pickupDeuterium,shipyardCost,labCost,terrafometrCost;
+	JTextArea textLab,textShipyard,textTerrafometr;
+	public BudynkiOpisy(){
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		shipyardCost = new JLabel();
+		shipyardCost.setBounds(400,290,400,70);
+		shipyardCost.setForeground(Color.WHITE);
+		shipyardCost.setText("Potrzebne surowce: Metal "+(int)(COST_SHIPYARD_METAL*pow(1.5,Stage.LVL_SHIPYARD-1))+" Krysztal "+(int)(COST_SHIPYARD_CRISTAL*pow(1.5,Stage.LVL_SHIPYARD-1)));
+		add(shipyardCost);
+		
+		
+		labCost = new JLabel();
+		labCost.setBounds(400,170,400,70);
+		labCost.setForeground(Color.WHITE);
+		labCost.setText("Potrzebne surowce: Metal "+(int)(COST_LAB_METAL*pow(1.6,Stage.LVL_LAB-1))+" Krysztal "+(int)(COST_LAB_CRISTAL*pow(1.6,Stage.LVL_LAB-1)));
+		add(labCost);
+		
+		terrafometrCost = new JLabel();
+		terrafometrCost.setBounds(400,490,400,70);
+		terrafometrCost.setForeground(Color.WHITE);
+		terrafometrCost.setText("Potrzebne surowce: Metal "+(int)(COST_TERRAFOMETR_METAL*pow(1.6,Stage.LVL_TERRAFOMETR-1))+" Krysztal "+(int)(COST_TERRAFOMETR_CRISTAL*pow(1.6,Stage.LVL_TERRAFOMETR-1)));
+		add(terrafometrCost);
+		
+		
+		
+		
+		
+		
+		metal = new JLabel(""+Stage.METAL);
+		metal.setForeground(Color.WHITE);
+		metal.setBounds(400, 40, 200, 20);
+		add(metal);
+		
+		cristal = new JLabel(""+Stage.CRISTAL);
+		cristal.setForeground(Color.WHITE);
+		cristal.setBounds(605, 40, 200, 20);
+		add(cristal);
+		
+		deuterium = new JLabel(""+Stage.DEUTERIUM);
+		deuterium.setForeground(Color.WHITE);
+		deuterium.setBounds(805, 40, 200, 20);
+		add(deuterium);
+		
+		
+		labLvl = new JLabel("Laboratorium " + Stage.LVL_LAB +" lvl");
+		shipyardLvl = new JLabel("Stocznia "+Stage.LVL_SHIPYARD +" lvl");
+		terrafometrLvl = new JLabel("Terrafometr "+Stage.LVL_TERRAFOMETR +" lvl");
+		labLvl.setForeground(Color.WHITE);
+		shipyardLvl.setForeground(Color.WHITE);
+		terrafometrLvl.setForeground(Color.WHITE);
+		labLvl.setBounds(400,130,150,30);
+		shipyardLvl.setBounds(400,250,150,30);
+		terrafometrLvl.setBounds(400,370,150,30);
+		add(labLvl);
+		add(shipyardLvl);
+		add(terrafometrLvl);
+		
+		
+		pickupMetal = new JLabel("Metal");
+		pickupCristal = new JLabel("Krysztal");
+		pickupDeuterium = new JLabel("Deuter");
+	//podmet.setOpaque(true);
+	//podmet.setBackground(Color.BLUE);
+		pickupMetal.setForeground(Color.WHITE);
+		pickupCristal.setForeground(Color.WHITE);
+		pickupDeuterium.setForeground(Color.WHITE);
+		pickupMetal.setBounds(353,15,150,30);
+		pickupCristal.setBounds(548,15,150,30);
+		pickupDeuterium.setBounds(750,15,150,30);
+		add(pickupMetal);
+		add(pickupCristal);
+		add(pickupDeuterium);
+		
+		
+		textLab = new JTextArea();
+		Font dialog = new Font("Serif" , Font.ITALIC,13);
+		textLab.setForeground(Color.RED);
+		textLab.setFont(dialog);
+		textLab.setText("Aby odkrywaæ nowe technologie, konieczne jest\n laboratorium badawcze.");
+		textLab.setBackground(Color.GRAY);
+		textLab.setEditable(false);
+		textLab.setOpaque(false);
+		textLab.setBounds(400, 150, 295, 95);
+		add(textLab);
+		//////////////////////////////////////////
+		
+		textShipyard = new JTextArea();
+		textShipyard.setForeground(Color.RED);
+		textShipyard.setFont(dialog);
+		textShipyard.setText("W stoczni budowane s¹ wszelkiego rodzaju statki\n i systemy obronne");
+		//textkrys.setBackground(Color.GRAY);
+		textShipyard.setEditable(false);
+		textShipyard.setOpaque(false);
+		textShipyard.setBounds(400, 270, 295, 95);
+		add(textShipyard);
+		/////////////////////////////////////////
+		
+		textTerrafometr = new JTextArea();
+		textTerrafometr.setForeground(Color.RED);
+		textTerrafometr.setFont(dialog);
+		textTerrafometr.setText("Problem stworzenia wiêkszej przestrzeni budowlanej\n na zasiedlonych planetach zacz¹³ siê nasilaæ\n wraz z procesem rozwoju infrastruktury planetarnej\n we wszystkich galaktykach. Tradycyjne budownictwo\n i in¿ynieria sta³y siê niewystarczaj¹ce ka¿dy\npoziom dodaje 10 dodatkowych pól na planecie");
+		//textdeu.setBackground(Color.GRAY);
+		textTerrafometr.setEditable(false);
+		textTerrafometr.setOpaque(false);
+		textTerrafometr.setBounds(400, 390, 295, 115);
+		add(textTerrafometr);
+		
+		
+		
+		
+		
+		
+		setBounds(0,0,Stage.WIDTH,Stage.HEIGHT);
+		setVisible(true);
+		
+	}
+
+}
