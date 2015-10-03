@@ -1,0 +1,81 @@
+package gramy;
+
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.sql.Time;
+
+import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class AdditionalGamePicture extends Canvas implements ActionListener{
+	public static int x = Stage.WIDTH/2,y = Stage.HEIGHT/2 ;
+	public static Image monster ;
+	
+	
+	
+	Timer timer = new Timer(50,new ActionListener(){
+		public void actionPerformed(ActionEvent evt){
+			x++;
+			y++;
+			repaint();
+			
+			
+		}	
+	});
+			
+	
+	
+	
+		public  void actionPerformed(ActionEvent e){	
+			Object source = e.getSource();
+			
+			if(source == AdditionalGameSource.button){			
+				
+			}
+		
+	};
+	
+	
+	
+	
+	public AdditionalGamePicture(){
+		
+		
+		monster = loadImage("obcy.jpg");
+		
+		setBounds(1,1,Stage.WIDTH,Stage.HEIGHT);
+		setVisible(true);
+	}
+	
+	
+
+	
+	public void paint(Graphics g){
+		
+		 
+	g.drawImage(monster, x, y, this);
+	timer.start();
+	}
+	
+
+	
+	public  BufferedImage loadImage(String sciezka) {
+		URL url=null;
+		try {
+		url = getClass().getClassLoader().getResource(sciezka);
+		return ImageIO.read(url);
+		} catch (Exception e) {
+		System.out.println("error 0002"+ sciezka);
+		System.exit(0);
+		return null;
+		}
+		}
+}

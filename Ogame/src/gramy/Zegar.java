@@ -23,7 +23,7 @@ public Zegar() {
 	
 	setForeground(Color.WHITE);
 	
-	setBounds(50,50,400,60);
+	setBounds(50,50,240,60);
 	setOpaque(false);
 }
 public void start() {

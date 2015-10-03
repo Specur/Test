@@ -80,13 +80,13 @@ public class Ogame extends JFrame {
 		clock.setForeground(Color.RED);
 		clock.setOpaque(false);
 		clock.setText("                       UWAGA!!!\nObca flota zbli¿a siê do twojej planety.\n        Ude¿y o godzinie "+hour+":"+minute+":"+time.getSeconds()+"."+"\nMasz ma³o czasu na rozbudowe Ganimedes.\n               Bierz siê do roboty!");
-		clock.setBounds(10, 110, 300, 100);
+		clock.setBounds(10, 110, 260, 100);
 		clock.setEditable(false);
 		add(clock);
 		
 		placePlanet = new JLabel();
 		placePlanet.setForeground(Color.WHITE);
-		placePlanet.setBounds(10, 500, 500, 20);
+		placePlanet.setBounds(10, 500, 260, 20);
 		placePlanet.setText("Wolnych miejsc do zabudowy na planecie : " + (Stage.MAX_LVL-Stage.CURRENT_LVL));
 		add(placePlanet);
 		

@@ -1,26 +1,46 @@
 package gramy;
 
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.sql.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
-public class AdditionalGamePicture extends JPanel{
+public class AdditionalGamePicture extends Canvas implements ActionListener{
 	public static int x = Stage.WIDTH/2,y = Stage.HEIGHT/2 ;
 	public static Image monster ;
 	
-	JButton button ;
-	int g = 0;
-	ActionListener oo = new ActionListener(){
-		public void actionPerformed(ActionEvent e){	
+	
+	
+	Timer timer = new Timer(50,new ActionListener(){
+		public void actionPerformed(ActionEvent evt){
+			x++;
+			y++;
+			repaint();
 			
-		}
+			
+		}	
+	});
+			
+	
+	
+	
+		public  void actionPerformed(ActionEvent e){	
+			Object source = e.getSource();
+			
+			if(source == AdditionalGameSource.button){			
+				
+			}
+		
 	};
 	
 	
@@ -28,47 +48,35 @@ public class AdditionalGamePicture extends JPanel{
 	
 	public AdditionalGamePicture(){
 		
-		button = new JButton("niiegig");
-		button.setBounds(200,200,100,30);
-		button.addActionListener(oo);
-		add(button);
 		
 		monster = loadImage("obcy.jpg");
-		
-		
-		while(isVisible()){
-			
-			
-			
-		}
-		
-		
 		
 		setBounds(1,1,Stage.WIDTH,Stage.HEIGHT);
 		setVisible(true);
 	}
 	
 	
-	
-	
-	
-	
-	
+
 	
 	public void paint(Graphics g){
-		g.drawImage(monster,x,y, this);
 		
+		 drawMonster(g);
+		 drawBoard(g);
+	timer.start();
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void drawMonster(Graphics g){
+		g.drawImage(monster, x, y, this);
+	}
+
+	public void drawBoard(Graphics g){
+		g.drawLine(300,50, 1200, 50);
+		g.drawLine(1200,50, 1200, 600);
+		g.drawLine(1200,600, 300, 600);
+		g.drawLine(300,600, 300, 50);
+		
+	}
 	
 	public  BufferedImage loadImage(String sciezka) {
 		URL url=null;
