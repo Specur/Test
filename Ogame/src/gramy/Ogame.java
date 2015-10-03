@@ -49,6 +49,9 @@ public class Ogame extends JFrame {
 			 	placePlanet.setText("Wolnych miejsc do zabudowy na planecie :" + (Stage.MAX_LVL-Stage.CURRENT_LVL));
 			 	
 			 	
+			 	
+			 	
+			 	
 			 	Time++;
 			 	if( Time == 200){
 			 		
@@ -115,6 +118,9 @@ public class Ogame extends JFrame {
 		
 		JPanel Obrona = new Obrona();
 		tp.add("Obrona", Obrona);
+		
+		JPanel AdditionalGame = new AdditionalGame();
+		tp.add("Dodatkowa gra", AdditionalGame);
 		
 		tp.setBounds(1,1,Stage.WIDTH , Stage.HEIGHT);
 		add(tp);

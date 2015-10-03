@@ -1,0 +1,19 @@
+package gramy;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+
+public class AdditionalGameSource extends JComponent{
+	
+	public AdditionalGameSource(){
+		
+		
+		JPanel Picture = new AdditionalGamePicture();
+		
+		add(Picture);
+		
+		setBounds(0, 0, Stage.WIDTH , Stage.HEIGHT);
+		setVisible(true);
+	}
+
+}

@@ -1,0 +1,18 @@
+package gramy;
+
+import javax.swing.JComponent;
+
+public class AdditionalGameSource extends JComponent{
+	
+	public AdditionalGameSource(){
+		
+		
+		
+		
+		
+		
+		setBounds(0, 0, Stage.WIDTH , Stage.HEIGHT);
+		setVisible(true);
+	}
+
+}
